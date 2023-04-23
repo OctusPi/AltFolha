@@ -1,0 +1,44 @@
+<form action="{{search_action}}" method="post" enctype="multipart/form-data" id="ocpsearch">
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc00" class="form-label small">Secretaria </label>
+            <select name="secretaria" id="inpSearc00" class="form-select ocp-input-form">
+                {{form_secretarias}}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc01" class="form-label small">Departamento </label>
+            <select name="departamento" id="inpSearc01" class="form-select ocp-input-form">
+                {{form_departamentos}}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc02" class="form-label small">Nome Funcionário </label>
+            <input type="text" name="funcionario" id="inpSearc02" value=""
+                   class="form-control ocp-input-form">
+        </div>
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc03" class="form-label small">CPF Funcionário </label>
+            <input type="text" name="cpf" id="inpSearc03" value=""
+                   class="form-control ocp-input-form">
+        </div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="col text-end">
+            <button type="submit" class="btn btn-sm btn-accept">
+                <i class="bi-search" style="font-size: 0.8rem;"></i>
+                Buscar
+            </button>
+        </div>
+    </div>
+
+    <input type="hidden" name="token_search" value="{{token}}">
+</form>

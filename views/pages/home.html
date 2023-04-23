@@ -1,0 +1,79 @@
+<main class="ocp-main container">
+    <div class="card">
+        <!-- card header -->
+        <div class="card-header d-sm-block d-md-flex">
+            <div class="card-title">
+                <h3 class="p-0 m-0">Dashboard {{system_name}}</h3>
+                <p class="p-0 m-0 text-muted">Panorama de status do sistema e projeção de dados<br></p>
+            </div>
+            <div class="card-actions ms-auto ocp-print">
+                
+            </div>
+        </div>
+
+        <!-- card body -->
+        <div class="card-body">
+
+            <!-- list data -->
+            <div id="pagelist">
+
+                <div id="dashfila">
+                    <span class="badge bg-base my-3">Status Geral da Fila</span>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 p-2">
+                            <div class="ocp-dash-card ocp-dash-card-one align-middle d-flex">
+                                <i class="bi-stack" style="font-size: 2rem;"></i>
+                                <div class="ocp-dash-card-content">
+                                    <p class="text-truncate">{{total_queue}}</p>
+                                    <h3 class="text-truncate">Volume Total</h3>
+                                    <span class="text-truncate">Total geral de solicitações</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 p-2">
+                            <div class="ocp-dash-card ocp-dash-card-two align-middle d-flex">
+                                <i class="bi-ui-checks" style="font-size: 2rem;"></i>
+                                <div class="ocp-dash-card-content">
+                                    <p>{{total_ok}}</p>
+                                    <h3>Total Atendidos</h3>
+                                    <span>Solicitações Processadas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 p-2">
+                            <div class="ocp-dash-card ocp-dash-card-tree align-middle d-flex">
+                                <i class="bi-stack-overflow" style="font-size: 2rem;"></i>
+                                <div class="ocp-dash-card-content">
+                                    <p>{{total_wait}}</p>
+                                    <h3>Aguardando Vaga</h3>
+                                    <span>Esperando por Atendimento</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 p-2">
+                            <div class="ocp-dash-card ocp-dash-card-for align-middle d-flex">
+                                <i class="bi-x-circle-fill" style="font-size: 2rem;"></i>
+                                <div class="ocp-dash-card-content">
+                                    <p>{{total_cancel}}</p>
+                                    <h3>Canceladas</h3>
+                                    <span>Não Compareceram</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dashppis" class="mt-3">
+                    <span class="badge bg-base my-3">Detalhamento PPIs</span>
+                    <div class="table-responsive">
+                        {{info_ppis}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- card footer -->
+        <div class="card-footer">
+        </div>
+
+    </div>
+</main>

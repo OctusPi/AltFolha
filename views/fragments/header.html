@@ -1,0 +1,57 @@
+<header>
+    <!-- Nav System Infos -->
+    <nav class="ocp-navtop navbar navbar-expand-lg navbar-dark fixed-top bg-base ocp-print py-2">
+        <div class="container">
+            <a class="navbar-brand" href="?app=home"><img src="resources/imgs/logo-system-mini.svg" height="40" alt="Logo Sistema"></a>
+            <button class="navbar-toggler text-corbase border-0" type="button" data-bs-toggle="collapse" data-bs-target="#ocpOpenNavHome" aria-controls="ocpOpenNavHome" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-corbase"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="ocpOpenNavHome">
+                <div class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+                    <div class="navbar-nav small">
+                        <a class="nav-link small" href="?app=manual">Manual</a>
+                        <a class="nav-link small" href="?app=sobre">Sobre</a>
+                        <a class="nav-link small" href="#">{{sys_version}}</a>
+                    </div>
+                </div>
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle small ocp-semi-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-person-circle float-start p-0 m-0 me-2" style="font-size: 1rem;"></i>
+                            {{user_name}}
+                        </a>
+                        <ul class="dropdown-menu bg-base ocp-nav-dropmenu border-0" aria-labelledby="navbarDropdown">
+                            <li>
+                                <p class="small text-white m-0 p-2 ps-3 pe-3 ocp-user-nav">
+                                    <span class="small">Perfil: {{user_perfil}}</span><br>
+                                    <span class="small">Acessou: {{user_lastlogin}}</span>
+                                </p>
+                            </li>
+                            <li class="{{user_adm}}">
+                                <a class="dropdown-item ocp-navhome-dropdown-item small text-white px-3" href="?app=admin">
+                                    <i class="bi-toggles float-start p-0 m-0 me-2"></i>
+                                    Administração
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item ocp-navhome-dropdown-item small text-white px-3" href="?app=login&action=logoff">
+                                    <i class="bi-door-open-fill float-start p-0 m-0 me-2"></i>
+                                    Sair
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Nav Routes -->
+    <nav class="ocp-navroute fixed-top bg-white py-1 ocp-print">
+        <div class="container">
+            <div class="row">
+                {{nav_router}}
+            </div>
+        </div>
+    </nav>
+</header>

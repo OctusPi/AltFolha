@@ -1,0 +1,12 @@
+<div class="col-3 dropdown">
+    <a href="{{item_url}}" class="d-block dropdow {{item_status}}"
+       role="button" id="{{item_id}}" 
+       data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="{{item_icone}} p-0 m-0" style="font-size: 1.7rem;"></i>
+        <span class="ocp-navtitle d-block p-0 m-0">{{item_title}}</span>
+        <span class="ocp-navdesc d-block text-mutted text-truncate small p-0 m-0">{{item_desc}}</span>
+    </a>
+    <ul class="dropdown-menu p-3 ocp-rounded-dropmenu" aria-labelledby="{{item_id}}">
+        {{item_subs}}
+    </ul>
+</div>

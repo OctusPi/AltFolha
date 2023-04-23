@@ -1,0 +1,53 @@
+*{
+    border-radius: 0;
+    font-size: 0.8rem !important;
+}
+
+body{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-fundo{
+    background: #ffffff !important;
+}
+
+.container{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.card{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.ocp-print{
+    display: none !important;
+}
+
+.table-responsive{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: visible;
+}
+
+.table{
+    width: 100%;
+    font-size: 0.8rem !important;
+}
+
+.ocp-graf-mini{
+    background: #FFFFFF !important;
+    min-height: 100px !important;
+    overflow: visible !important;
+}
+
+.card-footer{
+    display: none;
+}

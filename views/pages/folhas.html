@@ -1,0 +1,131 @@
+<main class="ocp-main container">
+    <div class="card">
+        <!-- card header -->
+        <div class="card-header d-sm-block d-md-flex">
+            <div class="card-title">
+                <h3 class="p-0 m-0">Controle de Alteração de Folha</h3>
+                <p class="p-0 m-0 text-muted">Registro Mensal de Acrescimos e Decrescimos de Salário<br></p>
+            </div>
+            <div class="card-actions ms-auto ocp-print">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <button class="btn btn-sm btn-accept ocp-btn-toogle-form my-1" id="btnadd" form-reset="ocpform">
+                            <i class="bi-plus-circle-fill" style="font-size: 0.8rem;"></i>
+                            Registrar
+                        </button>
+                    </li>
+                    <li class="list-inline-item" id="ocpBtnFilter">
+                        <div class="dropdown m-0 p-0">
+                            <button class="btn btn-sm btn-action dropdown my-1" type="button" data-bs-toggle="dropdown">
+                                <i class="bi-funnel-fill" style="font-size: 0.8rem;"></i>
+                                Filtro
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end ocp-drop-form" aria-labelledby="ocpBtnFilter">
+                                {{form_search}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- card body -->
+        <div class="card-body">
+            
+            <!--Alerts Msgs-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div id="msgalert"></div>
+                </div>
+            </div>
+
+            <!-- form page -->
+            <div id="pageform" class="my-3 ocp-hidden">
+                <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform" reload="true">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <p id="ocp-form-info" class="mb-5 small text-secondary">Os registros de alteração de folha devem ser enviados até o dia 20 do mês subsequente, não é permitido envio de alteração para o mês corrente ou futuro</p>
+
+                            <div class="row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-3 col-lg-2">
+                                    <label for="mes" class="form-label col-form-label small">Mês Folha <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4 mb-sm-2">
+                                    <select name="mes" id="mes"
+                                    class="form-select ocp-input-form ocp-mandatory">
+                                        {{form_meses}}
+                                    </select>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-2">
+                                    <label for="ano" class="form-label col-form-label small">
+                                        Ano Folha <span class="text-danger small">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4">
+                                    <select name="ano" id="ano" class="form-select ocp-input-form ocp-mandatory">
+                                        {{form_anos}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-3 col-lg-2">
+                                    <label for="secretaria" class="form-label col-form-label small">Secretaria <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4 mb-sm-2">
+                                    <select name="secretaria" id="secretaria" url="?app=folhas&action=dataslc"
+                                    class="form-select ocp-input-form ocp-mandatory">
+                                        {{form_secretarias}}
+                                    </select>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-2">
+                                    <label for="departamento" class="form-label col-form-label small">
+                                        Departamento <span class="text-danger small">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-4">
+                                    <select name="departamento" id="departamento" 
+                                    url="?app=folhas&action=dataslc&type=workers"
+                                    class="form-select ocp-input-form ocp-mandatory">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- list funcs -->
+                    <div class="table-responsive mb-3" id="listworkers">
+                        
+                    </div>
+
+                    <div class="input-group row mt-4">
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-sm btn-accept">
+                                <i class="bi-check-circle" style="font-size: 0.8rem;"></i>
+                                Salvar
+                            </button>
+                            <button type="button" id="btncancel" class="btn btn-sm btn-cancel ocp-btn-cancel-form">
+                                <i class="bi-x-circle" style="font-size: 0.8rem;"></i>
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                        
+                    <input type="hidden" name="token" value="{{token}}">
+                </form>
+            </div>
+
+            <!-- list data -->
+            <div id="pagelist" class="my-3">
+                <div class="table-responsive" id="datapage">
+                    {{data_page}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- card footer -->
+        <div class="card-footer">
+        </div>
+    </div>
+</main>

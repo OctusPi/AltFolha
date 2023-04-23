@@ -1,0 +1,79 @@
+<main class="ocp-main container">
+    <div class="card">
+        <!-- card header -->
+        <div class="card-header d-sm-block d-md-flex">
+            <div class="card-title">
+                <h3 class="p-0 m-0">Importar Base de Funcionários</h3>
+                <p class="p-0 m-0 text-muted">Importar lote de funcionários através de arquivo .CSV<br></p>
+            </div>
+            <div class="card-actions ms-auto ocp-print">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="?app=funcionarios" class="btn btn-sm btn-action my-1" id="btnback">
+                            <i class="bi-arrow-left" style="font-size: 0.8rem;"></i>
+                            Voltar
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{{modelo_import}}" download="MODELO IMPORT FUNCIONARIOS" class="btn btn-sm btn-action my-1" id="btndown">
+                            <i class="bi-arrow-down" style="font-size: 0.8rem;"></i>
+                            Baixar Modelo
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- card body -->
+        <div class="card-body">
+            
+            <!--Alerts Msgs-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div id="msgalert"></div>
+                </div>
+            </div>
+
+            <!-- form page -->
+            <div id="pageform" class="my-3">
+                <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform" reloadview="{{form_reloadview}}">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                
+                                <div class="col">
+                                    <label for="lotecsv" class="form-label col-form-label small">Upload Arquivo <span class="text-danger small">*</span></label>
+                                    <input type="file" name="lotecsv" id="lotecsv"
+                                           class="form-control ocp-input-form ocp-mandatory"
+                                           placeholder="Lote de Funcionário CSV"
+                                           accept="text/csv">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mt-4">
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn btn-sm btn-accept">
+                                        <i class="bi-check-circle" style="font-size: 0.8rem;"></i>
+                                        Ler Arquivo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="token" value="{{token}}">
+                </form>
+            </div>
+
+            <form action="{{action}}" method="post" enctype="multipart/form-data" id="importform">
+                <div id="datapage" class="d-block mt-3"></div>
+                <input type="hidden" name="token_import" value="{{token}}">
+            </form>
+        
+        </div>
+        
+        <!-- card footer -->
+        <div class="card-footer">
+        </div>
+
+    </div>
+</main>

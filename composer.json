@@ -1,0 +1,19 @@
+{
+    "name": "octus/app",
+    "type": "project",
+    "require": {
+        "mpdf/mpdf": "8.1.2",
+        "mpdf/qrcode": "1.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Octus\\App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Octus Pi",
+            "email": "octuspi@gmail.com"
+        }
+    ]
+}

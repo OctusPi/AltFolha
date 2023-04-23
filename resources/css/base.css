@@ -1,0 +1,59 @@
+:root{
+    --radio : 12px;
+    --btn-radio :11px;
+    --cc-text: #ffffff;
+    --bg-card: #ffffff;
+    --bg-fundo: #ececec;
+    --bg-imput: #ffffff;
+    --bg-impfocus: #EBEDF3;
+    --bg-impborder:#e2e2e3;
+    --bg-inputplace: #B5B5C3;
+    --bg-shadow: #cac9c9;
+    --bg-action: #b4e7f0;
+    --bg-gray: #939191;
+    --bg-base : #51929d;
+    --bg-hover : #3c808c;
+    --bg-contrast : #191D32;
+    --bg-navhome : #5e6169;
+    --bg-success: #86ebba;
+    --bg-primary: #6fbcf2;
+    --bg-warning: #f5c674;
+    --bg-danger: #ff798b;
+    --bg-secondary: #cac9c9;
+    --bg-success-dark: #1d7254;
+    --bg-primary-dark: #1a5f91;
+    --bg-warning-dark: #8d6318;
+    --bg-danger-dark: #943844;
+    --bg-secondary-dark: #5d5d5d;
+    --ft-base: 'Poppins', Tahoma, Sans-serif, serif;
+    --ft-title:'Raleway', Tahoma, Sans-serif, serif;
+}
+
+/* Working in dark theme*
+:root{
+    --radio : 12px;
+    --btn-radio : 20px;
+    --cc-text: #ffffff;
+    --bg-card: #242424;
+    --bg-fundo: #161616;
+    --bg-imput: #e4e8ed;
+    --bg-impfocus: #EBEDF3;
+    --bg-inputplace: #B5B5C3;
+    --bg-shadow: #cac9c9;
+    --bg-action: #d7dbf9;
+    --bg-gray: #939191;
+    --bg-base : #32678F;
+    --bg-hover : #19405d;
+    --bg-contrast : #191D32;
+    --bg-navhome : #5e6169;
+    --bg-success: #86ebba;
+    --bg-primary: #6fbcf2;
+    --bg-warning: #f5c674;
+    --bg-danger: #ff798b;
+    --bg-success-dark: #1d7254;
+    --bg-primary-dark: #1a5f91;
+    --bg-warning-dark: #8d6318;
+    --bg-danger-dark: #943844;
+    --ft-base: 'Poppins', Arial, Tahoma, Sans-serif, serif;
+    --ft-title:'Poppins', Arial, Tahoma, Sans-serif, serif;
+}*/

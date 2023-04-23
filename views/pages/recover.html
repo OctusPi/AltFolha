@@ -1,0 +1,34 @@
+<main class="container-signin">
+    <div class="form-signin text-center">
+        <div class="form-signin-divisor form-signin-rdtop">
+            <img src="resources/imgs/logo-system.svg" alt="logo sistema" class="mb-2 img-fluid">
+            <p class="small m-0 p-0">{{syscopy}}</p>
+        </div>
+        <div class="form-signin-divisor form-signin-rdbtt">
+            <h1 class="title-login p-0 m-0">{{sisname}}</h1>
+            <p class="description-login p-0 m-0">{{sisdesc}}</p>
+            <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform" class="my-2 px-5">
+                <div id="msgalert"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="email" id="inputEmail" name="email"
+                                   class="form-control ocp-input-form ocp-mandatory my-2" 
+                                   placeholder="E-mail" autofocus>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-sm btn-accept btn-block mt-3 mb-1" type="submit">
+                    <i class="bi-check-circle-fill" style="font-size: 0.8rem;"></i>
+                    Recuperar Senha
+                </button>
+                
+                <p class="small text-danger mt-2">Ao solicitar a recuperação de senha, uma nova senha temporária será enviada para o seu e-mail de cadastro.</p>
+                <a class="d-block small little-text" href="?app=login">Realizar Login</a>
+
+                <input type="hidden" class="ocp-input-form" name="token" value="{{token}}">
+            </form>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,64 @@
+<main class="container-signin">
+    <div class="form-signin text-center shadow">
+        
+        <div class="ocp-rounded bg-white small p-4">
+            
+            <h1 class="title-login p-0 m-0">{{sisname}}</h1>
+            <p class="description-login p-0 m-0 small">{{sisdesc}}</p>
+
+            <div class="my-3 text-secondary text-center">
+                <i class="bi-person-circle text-secondary" style="font-size: 2rem;"></i>
+                <p class="m-0 p-0"><strong>{{user_name}}</strong></p>
+                <p class="m-0 p-0 small">{{user_mail}}</p>
+            </div>
+
+            <p class="description-login p-0 m-0 mb-3 small text-danger">Alteração de Senha Obrigatória</p>
+
+            <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform" class="mt-2 px-5">
+                <div id="msgalert" class="mb-3"></div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="password" id="inputTempPassword" name="oldpass"
+                                   class="form-control ocp-input-form ocp-mandatory" autocomplete="off"
+                                   placeholder="Senha Atual">
+                        </div>
+                    </div>
+
+                    <div class="col-12 my-3">
+                        <div class="form-group">
+                            <input type="password" id="inputNewPassword" name="newpass"
+                                   class="form-control ocp-input-form ocp-mandatory" autocomplete="off"
+                                   placeholder="Nova Senha">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="password" id="inputRepPassword" name="reppass"
+                                   class="form-control ocp-input-form ocp-mandatory" autocomplete="off"
+                                   placeholder="Repita a Senha">
+                        </div>
+                    </div>
+                </div>
+
+                <p class="description-login p-0 m-0 mt-3 small text-danger">Sua nova senha deve ter pelo menos 12 caracteres, pelo menos uma letra maiúscula, um número e um símbolo (@ ! % ? &).</p>
+
+                <button class="btn btn-sm btn-accept mt-3 mb-1" type="submit">
+                    <i class="bi bi-check-circle-fill" style="font-size: 0.8rem;"></i>
+                    Alterar
+                </button>
+                <a href="?app=login&action=logoff">
+                    <button class="btn btn-sm btn-cancel mt-3 mb-1" type="button">
+                        <i class="bi bi-door-open-fill" style="font-size: 0.8rem;"></i>
+                        Sair
+                    </button>
+                </a>
+
+                <input type="hidden" class="ocp-input-form" name="token" value="{{token}}">
+                
+            </form>
+        </div>
+    </div>
+</main>

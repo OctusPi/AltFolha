@@ -1,0 +1,178 @@
+<main class="ocp-main container">
+    <div class="card">
+        <!-- card header -->
+        <div class="card-header d-sm-block d-md-flex">
+            <div class="card-title">
+                <h3 class="p-0 m-0">Gestão de Usuário</h3>
+                <p class="p-0 m-0 text-muted">Lista dos Usuários Registrados no Sistema <br></p>
+            </div>
+            <div class="card-actions ms-auto ocp-print">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <button class="btn btn-sm btn-accept ocp-btn-toogle-form my-1" id="btnadd" form-reset="ocpform">
+                            <i class="bi-plus-circle-fill" style="font-size: 0.8rem;"></i>
+                            Adicionar
+                        </button>
+                    </li>
+                    <li class="list-inline-item" id="ocpBtnFilter">
+                        <div class="dropdown m-0 p-0">
+                            <button class="btn btn-sm btn-action dropdown my-1" type="button" data-bs-toggle="dropdown">
+                                <i class="bi-funnel-fill" style="font-size: 0.8rem;"></i>
+                                Filtro
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end ocp-drop-form" aria-labelledby="ocpBtnFilter">
+                                {{form_search}}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="?app=configs" class="btn btn-sm btn-action my-1">
+                            <i class="bi-gear-fill" style="font-size: 0.8rem;"></i>
+                            Config.
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- card body -->
+        <div class="card-body">
+            
+            <!--Alerts Msgs-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div id="msgalert"></div>
+                </div>
+            </div>
+
+            <!-- form page -->
+            <div id="pageform" class="my-3 ocp-hidden">
+                <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform" reload="true">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <p id="ocp-form-info" class="mb-5 small text-secondary">Ao adicionar um novo Usuário uma senha de acesso temporário será encaminhada para o e-mail de cadastro, sendo necessário altera-la no primeiro acesso.</p>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="nome" class="form-label col-form-label small">Nome Usuário <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="nome" id="nome"
+                                           class="form-control ocp-input-form ocp-mandatory" placeholder="Nome de Tratamento"
+                                           value="">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="cpf" class="form-label col-form-label small">Num. CPF <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="cpf" id="cpf"
+                                           class="form-control ocp-input-form ocp-mandatory maskcpf" placeholder="000.000.000-00" 
+                                           value="">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="email" class="form-label col-form-label small">E-mail <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="email" name="email" id="email"
+                                           class="form-control ocp-input-form ocp-mandatory"
+                                           placeholder="user@mail.com"
+                                           value="">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="telefone" class="form-label col-form-label small">Telefone <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="tel" name="telefone" id="telefone"
+                                           class="form-control ocp-input-form ocp-mandatory masktel"
+                                           placeholder="(00)0.0000-0000" value="">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="perfil" class="form-label col-form-label small">Perfil de Acesso <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <select name="perfil" id="perfil" class="form-select ocp-input-form ocp-mandatory">
+                                        {{form_perfis}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="secretaria" class="form-label col-form-label small">Secretaria</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <select name="secretaria" id="secretaria" url="?app=admin&action=dataslc"
+                                    class="form-select ocp-input-form">
+                                        {{form_secretarias}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="departamentos" class="form-label col-form-label small">Vinculo Depto.</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <select id="departamentos" name="departamentos[]" class="form-select ocp-input-form ocp-mult" 
+                                    multiple aria-label="select multiplo departamento">
+                                        {{form_departamentos}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="status" class="form-label col-form-label small">Status <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <select name="status" id="status" class="form-select ocp-input-form ocp-mandatory">
+                                        {{form_status}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group row mt-4">
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn btn-sm btn-accept">
+                                        <i class="bi-check-circle" style="font-size: 0.8rem;"></i>
+                                        Salvar
+                                    </button>
+                                    <button type="button" id="btncancel" class="btn btn-sm btn-cancel ocp-btn-cancel-form">
+                                        <i class="bi-x-circle" style="font-size: 0.8rem;"></i>
+                                        Fechar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="token" value="{{token}}">
+                    <input type="hidden" class="ocp-input-form ocp-input-id" id="id" name="id" value="0">
+                </form>
+            </div>
+
+            <!-- list data -->
+            <div id="pagelist" class="my-3">
+                <div class="table-responsive" id="datapage">
+                    {{data_page}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- card footer -->
+        <div class="card-footer">
+        </div>
+
+    </div>
+</main>

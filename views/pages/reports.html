@@ -1,0 +1,128 @@
+<main class="ocp-main container">
+    <div class="card">
+        <!-- card header -->
+        <div class="card-header d-sm-block d-md-flex">
+            <div class="card-title">
+                <h3 class="p-0 m-0">Relatório Processamento de Registros</h3>
+                <p class="p-0 m-0 text-muted">Tabulação dos dados das alterações de folha enviadas</p>
+            </div>
+            <div class="card-actions ms-auto ocp-print">
+                
+            </div>
+        </div>
+
+        <!-- card body -->
+        <div class="card-body">
+
+            <!--Alerts Msgs-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div id="msgalert"></div>
+                </div>
+            </div>
+
+            <!-- form page -->
+            <div id="pageform" class="my-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+
+
+                        <!-- form record request -->
+                        <div class="accordion mb-3" id="accordionNewParecer">
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <div class="ocp-collapse-card collapsed" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwho" aria-expanded="false"
+                                        aria-controls="collapseTwho">
+                                        <i class="bi-search-heart-fill" style="font-size: 0.8rem;"></i>
+                                        Filtros para o Relatório
+                                    </div>
+                                </h2>
+                                <div id="collapseTwho" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingTwo" data-bs-parent="#accordionNewParecer">
+                                    <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform">
+
+                                        <p id="ocp-form-info" class="mt-2 mb-4 small text-secondary">
+                                            Necessário informar pelo menos 01 campo de filtro para gerar o relatório, para dados detalhados das alterações marque a opção relatório analítico, do contrário o sistema fará apenas a tabulação quantitativa dos registros.
+                                        </p>
+
+
+                                        <div class="input-group row mb-lg-3">
+                                            <div class="col-sm-12 col-md-4 col-lg-2">
+                                                <label for="mes" class="form-label col-form-label small">Mês Folha</label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-8 col-lg-4 mb-sm-2">
+                                                <select name="mes" id="mes" class="form-select ocp-input-form">
+                                                    {{form_meses}}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 col-lg-2">
+                                                <label for="ano" class="form-label col-form-label small">Ano Folha</label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-8 col-lg-4 mb-sm-2">
+                                                <select name="ano" id="ano" class="form-select ocp-input-form">
+                                                    {{form_anos}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group row mb-lg-3">
+                                            
+                                            <div class="col-sm-12 col-md-4 col-lg-2">
+                                                <label for="secretaria" class="form-label col-form-label small">Secretaria</label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-8 col-lg-4 mb-sm-2">
+                                                <select name="secretaria" id="secretaria"
+                                                url="?app=folhas&action=dataslc"
+                                                class="form-select ocp-input-form">
+                                                    {{form_secretarias}}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 col-lg-2">
+                                                <label for="departamento" class="form-label col-form-label small">Departamento</label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-8 col-lg-4 mb-sm-2">
+                                                <select name="departamento" id="departamento" class="form-select ocp-input-form">
+                                                    {{form_departamentos}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group row mb-lg-3">
+                                            
+                                            <div class="col-sm-12 col-md-4 col-lg-2">
+                                                <label for="mode-lab" class="form-label col-form-label small">Relatório</label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-8 col-lg-4 mb-sm-2">
+                                                <div class="form-check form-switch small ocp-input-form">
+                                                    <input class="form-check-input ms-1" type="checkbox" name="details" value="1" role="switch" id="mode" checked>
+                                                    <label class="form-check-label text-muted ms-1" for="mode">Dados Analítico</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group row mt-4">
+                                            <div class="col-12 text-end">
+                                                <button type="submit" class="btn btn-sm btn-accept">
+                                                    <i class="bi-search" style="font-size: 0.8rem;"></i>
+                                                    Gerar
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="token_search" value="{{token}}">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- card footer -->
+        <div class="card-footer">
+        </div>
+    </div>
+</main>

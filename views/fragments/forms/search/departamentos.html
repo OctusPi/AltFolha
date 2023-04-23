@@ -1,0 +1,36 @@
+<form action="{{search_action}}" method="post" enctype="multipart/form-data" id="ocpsearch">
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc00" class="form-label small">Secretaria </label>
+            <select name="secretaria" id="inpSearc00" class="form-select ocp-input-form">
+                {{form_secretarias}}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc01" class="form-label small">Departamento | Escola </label>
+            <input type="text" name="departamento" id="inpSearc01" value=""
+                   class="form-control ocp-input-form">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <label for="inpSearc02" class="form-label small">Tipo </label>
+            <select name="tipo" id="inpSearc02" class="form-select ocp-input-form">
+                {{form_tipos}}
+            </select>
+        </div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="col text-end">
+            <button type="submit" class="btn btn-sm btn-accept">
+                <i class="bi-search" style="font-size: 0.8rem;"></i>
+                Buscar
+            </button>
+        </div>
+    </div>
+
+    <input type="hidden" name="token_search" value="{{token}}">
+</form>

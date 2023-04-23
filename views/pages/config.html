@@ -1,0 +1,157 @@
+<main class="ocp-main container">
+    <div class="card">
+        <!-- card header -->
+        <div class="card-header d-sm-block d-md-flex">
+            <div class="card-title">
+                <h3 class="p-0 m-0">Gestão de Informações</h3>
+                <p class="p-0 m-0 text-muted">Informações de propriedade do Sistema controle e identificação. Gerencie as informações de identificação de propriedade do sistema, referenciando a empresa em posse de uso detenção da licença. <br></p>
+            </div>
+            <div class="card-actions ms-auto ocp-print">
+                <ul class="list-inline">
+                    
+                </ul>
+            </div>
+        </div>
+
+        <!-- card body -->
+        <div class="card-body">
+            
+            <!--Alerts Msgs-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div id="msgalert"></div>
+                </div>
+            </div>
+
+            <!-- form page -->
+            <div id="pageform" class="my-3">
+                <form action="{{action}}" method="post" enctype="multipart/form-data" id="ocpform" reload="true">
+                    
+                    <div class="d-block text-center mb-5">
+                        <div class="ocp-imgform shadow-sm mx-auto">
+                            <input type="file" name="imglogo" id="ocp-img-input" class="ocpinputimgform" accept="image/*">
+                            <div id="ocpframeimage" class="ocp-content-imgform">
+                                {{info_logo}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="sistema" class="form-label col-form-label small">Sistema <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="sistema" id="sistema"
+                                           class="form-control ocp-input-form ocp-mandatory" placeholder="Nome do Sistema"
+                                           value="{{info_sistema}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="descricao" class="form-label col-form-label small">Descrição <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="descricao" id="descricao"
+                                           class="form-control ocp-input-form ocp-mandatory" placeholder="Pequena Descrição das Funcionalidades do Sistema" 
+                                           value="{{info_descricao}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="company" class="form-label col-form-label small">Company <span class="text-danger small">*</span></label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="company" id="company"
+                                           class="form-control ocp-input-form ocp-mandatory"
+                                           placeholder="Compania dentetora do uso do sistema"
+                                           value="{{info_company}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="cnpj" class="form-label col-form-label small">CNPJ</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="cnpj" id="cnpj"
+                                           class="form-control ocp-input-form maskcnpj"
+                                           placeholder="00.000.000/0000-00" value="{{info_cnpj}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="endereco" class="form-label col-form-label small">Endereço</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="endereco" id="endereco"
+                                           class="form-control ocp-input-form"
+                                           placeholder="Endereço da matriz de referencia da empresa" 
+                                           value="{{info_endereco}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="telefone" class="form-label col-form-label small">Telefone</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="tel" name="telefone" id="telefone"
+                                           class="form-control ocp-input-form masktel"
+                                           placeholder="(00)0.0000-0000" 
+                                           value="{{info_telefone}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="email" class="form-label col-form-label small">E-mail</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="email" name="email" id="email"
+                                           class="form-control ocp-input-form"
+                                           placeholder="company@mail.com" 
+                                           value="{{info_email}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mb-sm-2 mb-md-4">
+                                <div class="col-sm-12 col-md-4 col-lg-3">
+                                    <label for="urlbase" class="form-label col-form-label small">Url Base</label>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" name="urlbase" id="urlbase"
+                                           class="form-control ocp-input-form"
+                                           placeholder="http://system.com.br/" 
+                                           value="{{info_url}}">
+                                </div>
+                            </div>
+
+                            <div class="input-group row mt-4">
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn btn-sm btn-accept">
+                                        <i class="bi-check-circle" style="font-size: 0.8rem;"></i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="token" value="{{token}}">
+                    <input type="hidden" class="ocp-input-form ocp-input-id" id="id" name="id" value="{{info_id}}">
+                </form>
+            </div>
+
+        </div>
+        
+        <!-- card footer -->
+        <div class="card-footer">
+        </div>
+
+    </div>
+</main>
