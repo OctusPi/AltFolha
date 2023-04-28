@@ -128,16 +128,22 @@ abstract class Dao implements ItfDao
      * @param array $params | params search entity to delete
      * @return bool|null
      */
-    public function daoDel(?array $params = null):bool
+    public function daoDel(?array $params = null, bool $all = false):bool
     {
-        $where = $params == null
+        if($all)
+        {
+            $sql = 'DELETE FROM '.$this->getEntity()->getDataTableEntity();
+        }else{
+            $where = $params == null
             ? 'id = ' . $this->getEntity()->getAttr('id')
             : implode(' AND ', array_map(function ($col, $val) {
                 return $col . ' = ' . $val;
             }, array_keys($params), $params));
 
-        $sql = 'DELETE FROM '.$this->getEntity()->getDataTableEntity()
-        .' WHERE '.$where;
+            $sql = 'DELETE FROM '.$this->getEntity()->getDataTableEntity()
+            .' WHERE '.$where;
+        }
+        
 
         return $this->execQueryBool($sql);
     }

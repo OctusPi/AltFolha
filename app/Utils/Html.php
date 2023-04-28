@@ -344,6 +344,14 @@ class Html
                 </select>';
     }
 
+    public static function btnResetGeral():string
+    {
+        return '<a href="#" class="btn btn-sm btn-action bg-danger text-white my-1" data-bs-toggle="modal" data-bs-target="#modalDell" deleteid="0">
+                    <i class="bi-trash" style="font-size: 0.8rem;"></i>
+                    Reset Folhas
+                </a>';
+    }
+
     public static function tabAction(int $id, string $type):string
     {
         $urledit = Route::route(['action' => 'json', 'key' => $id]);

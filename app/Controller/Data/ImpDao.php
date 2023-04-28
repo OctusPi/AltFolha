@@ -76,11 +76,11 @@ class ImpDao extends Dao
      * @param null|array $params
      * @return array
      */
-    public function delData(?array $params = null):array
+    public function delData(?array $params = null, bool $all = false):array
     {
 
         //execute delete and retur string json with status and data entity deleted
-        $delete = $this->daoDel($params);
+        $delete = $this->daoDel($params, $all);
 
         //return array two keys -> code exit and status request
         return[

@@ -106,6 +106,28 @@ class Folhas extends Page
             }
         }
 
+         //delete all
+         if(Forms::validForm('token_trash')){
+           
+            $params = Forms::getPost(['id', 'passconfirm']);
+
+            if(md5($params['passconfirm']) == $this->usuario->getAttr('pid')){
+
+                $facDAO = (new FactoryDao())->daoFolha();
+                $excDAO = $facDAO->delData(all:true);
+
+                return Alerts::notify(
+                    $excDAO['code'],
+                    $excDAO['status'],
+                    $facDAO->getEntity(),
+                    $this->usuario
+                );
+
+            }else{
+                return Alerts::notify(Alerts::STATUS_WARNING, 'Senha de validaçao incorreta', null, $this->usuario);
+            }
+        }
+
         return Alerts::notify(Alerts::STATUS_WARNING, 'Formulario inválido, atualize a página e tente novamente...', null, $this->usuario);
     }
 
@@ -120,6 +142,7 @@ class Folhas extends Page
         $anofolha = date('n') == 1 ? (date('Y') - 1) : date('Y');
 
         $params = [
+            'reset_geral'         => $this->usuario->getAttr('perfil') == EntityUsuario::PRF_ADMIN ? Html::btnResetGeral() : '',
             'form_search'         => View::renderView('fragments/forms/search/folhas'),
             'search_action'       => Route::route(['action'=>'view']),
             'form_meses'          => Html::comboBox(Dates::getMesesArr(), $mesfolha, true),

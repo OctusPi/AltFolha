@@ -77,7 +77,7 @@ class Login extends Page
                     $this->session->create($objDAO);
                     $location = match($objDAO->getAttr('perfil')){
                         EntityUsuario::PRF_ADMIN => '?app=admin',
-                        default                  => '?app=folha'
+                        default                  => '?app=folhas'
                     };
                     header("Location:$location");
                     return Alerts::notify(Alerts::STATUS_OK, 'Redirecionando...', null, $facDAO -> getEntity());
