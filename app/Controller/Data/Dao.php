@@ -345,7 +345,6 @@ abstract class Dao implements ItfDao
             $exec      =  $execQuery->rowCount() > 0;
         }catch(Exception $e){
             Logs::writeLog('ERROR: '.$e->getMessage());
-            throw new Exception($e->getMessage());
         }finally{
             ConnDB::closeConn();
         }
