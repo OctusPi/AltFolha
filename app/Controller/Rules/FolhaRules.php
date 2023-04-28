@@ -18,7 +18,7 @@ class FolhaRules
 
     private function validateDay():array
     {
-        $status = date('j') <= 22;
+        $status = date('j') <= 20;
         $notify = $status ? Alerts::STATUS_OK : Alerts::STATUS_WARNING;
         $detail = $status ? '' : 'Não se pode enviar alterações após o dia 20'; 
 
