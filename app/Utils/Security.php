@@ -95,7 +95,7 @@ class Security
 
             }else{
                 $input = preg_replace("/(from|FROM|script|SCRIPT|select|SELECT|insert|INSERT|delete|DELETE|truncate|TRUNCATE|where|WHERE|drop|DROP|drop table|DROP TABLE|show tables|SHOW TABLES|#|\$|-\$-|\*|--|\\\\)/","",$input);
-                return filter_var($input, FILTER_SANITIZE_STRING);
+                return strip_tags($input);
             }
             
         }else{
