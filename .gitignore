@@ -1,5 +1,4 @@
 vendor/
 exports/*
-uploads/?
 log.txt
 composer.lock
