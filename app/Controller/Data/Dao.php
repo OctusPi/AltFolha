@@ -89,7 +89,7 @@ abstract class Dao implements ItfDao
     {
         //rescue values initializeds in entity and remove last attr (id)
         $params  = $this->getEntity()->getPropsAndValues();
-        array_pop($params); 
+        //array_pop($params); 
 
         //create binds with attrs entity and wildcards to values
         $binds  = implode(',', array_keys($params));
@@ -111,7 +111,7 @@ abstract class Dao implements ItfDao
     {
         //rescue values initializeds in entity and remove last attr (id)
         $params  = $this->getEntity()->getPropsAndValues();
-        array_pop($params); 
+        //array_pop($params); 
 
         //create binds with attrs entity and wildcards to values
         $binds = implode(',', array_map(function($item){ return $item.'=?'; }, array_keys($params)));
