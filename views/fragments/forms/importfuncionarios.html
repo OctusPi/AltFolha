@@ -1,27 +1,28 @@
-<div class="table-responsive">
-    {{list_imports}}
-</div>
-<div class="row mb-sm-2 mb-md-4">
-    <div class="col-sm-12 col-md-3 col-lg-2">
+
+<div class="row mb-sm-2 mb-3">
+    
+    <div class="col-sm-12 col-md-6 mb-sm-2">
         <label for="secretaria" class="form-label col-form-label small">Secretaria <span class="text-danger small">*</span></label>
-    </div>
-    <div class="col-sm-12 col-md-3 col-lg-4 mb-sm-2">
         <select name="secretaria" id="secretaria" url="?app=funcionarios&action=dataslc"
         class="form-select ocp-input-form ocp-mandatory">
             {{form_secretarias}}
         </select>
     </div>
-    <div class="col-sm-12 col-md-3 col-lg-2">
+    
+    <div class="col-sm-12 col-md-6">
         <label for="departamento" class="form-label col-form-label small">
             Departamento <span class="text-danger small">*</span>
         </label>
-    </div>
-    <div class="col-sm-12 col-md-3 col-lg-4">
         <select name="departamento" id="departamento" class="form-select ocp-input-form ocp-mandatory">
             {{form_departamentos}}
         </select>
     </div>
 </div>
+
+<div class="table-responsive">
+    {{list_imports}}
+</div>
+
 <div class="row mt-4">
     <div class="col-12 text-end">
         <button type="submit" class="btn btn-sm btn-accept">

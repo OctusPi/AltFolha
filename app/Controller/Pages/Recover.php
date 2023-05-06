@@ -62,7 +62,7 @@ class Recover extends Page
 
             if($wrtDAO['status']){
 
-                $smail = Emails::send(Emails::RSCPASS, $facDAO->getEntity(), ['tmppass' => $tmpPass]);
+                $smail = Emails::send(Emails::RSCPASS, $facDAO->getEntity(), $this->company, ['tmppass' => $tmpPass]);
                 return $smail
                        ? Alerts::notify(Alerts::STATUS_OK, 'Um e-mail foi enviado com instruções para acesso!')
                        : Alerts::notify(Alerts::STATUS_WARNING, 'Estamos tendo problemas para enviar uma senha temporária por email');

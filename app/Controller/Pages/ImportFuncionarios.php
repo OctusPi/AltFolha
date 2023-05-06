@@ -228,16 +228,17 @@ class ImportFuncionarios extends Page
         if(file_exists($this->path)){
 
             //read file and covert array lines
-            $file = file_get_contents($this->path);
+            $raw  = file_get_contents($this->path);
+            $file = str_replace(',', ';', $raw);
             $line = explode(PHP_EOL, $file);
 
-            $tabKeys = explode(',', $line[0]);
+            $tabKeys = explode(';', $line[0]);
 
             //covert array cols and feed body table
             if($line != null){
                 foreach ($line as $key => $value) {
                     if($key > 0){
-                        $cols = explode(',', $value);
+                        $cols = explode(';', $value);
                         if(!in_array(null, $cols)){
                             $tabBody[] = [
                                 Utils::at('0', $cols),
