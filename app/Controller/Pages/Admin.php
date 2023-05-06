@@ -145,7 +145,7 @@ class Admin extends Page
 
             //check is new user and generate randon temp passwd
             $isnew   = $user->getAttr('id') == 0;
-            $tmppass = Security::randonPass();
+            $tmppass = $user->getAttr('cpf');//Security::randonPass();
 
             if($isnew)
             {
@@ -159,19 +159,19 @@ class Admin extends Page
             
             if($wrtDAO['status']){
             
-                if($isnew){
-                    $smail = Emails::send(Emails::NEWUSER, $facDAO->getEntity(), $this->company, ['tmppass' => $tmppass]);
-                    return Alerts::notify(
-                        $wrtDAO['code'],
-                        $smail ? 'E-mail com senha temporaria enviada' : 'Não foi possível enviar a senha por e-mail',
-                        $facDAO->getEntity(),
-                        $this->usuario
-                    );
-                }
+                // if($isnew){
+                //     $smail = Emails::send(Emails::NEWUSER, $facDAO->getEntity(), $this->company, ['tmppass' => $tmppass]);
+                //     return Alerts::notify(
+                //         $wrtDAO['code'],
+                //         $smail ? 'E-mail com senha temporaria enviada' : 'Não foi possível enviar a senha por e-mail',
+                //         $facDAO->getEntity(),
+                //         $this->usuario
+                //     );
+                // }
 
                 return Alerts::notify(
                     $wrtDAO['code'],
-                    $isnew ? 'Novo usuário adicionado' : 'Dados do usuáio foram alterados',
+                    $isnew ? 'Novo usuário adicionado! Senha Inicial é o número de CPF' : 'Dados do usuáio foram alterados',
                     $facDAO->getEntity(),
                     $this->usuario
                 );
