@@ -1,6 +1,7 @@
 <?php
 namespace Octus\App\Controller\Pages;
 
+use Ark4ne\XlReader\Factory;
 use Octus\App\Controller\Pages\Components\DataList;
 use Octus\App\Model\EntityUsuario;
 use Octus\App\Controller\Pages\Page;
@@ -25,7 +26,7 @@ class ImportFuncionarios extends Page
     public function __construct(Session $session, ?EntityUsuario $usuario = null)
     {
         parent::__construct($session, $usuario, true, EntityUsuario::PRF_DEPTO, EntityUsuario::NVL_FUNCIONARIOS);
-        $this->path = __DIR__.'/../../../uploads/'.md5($this->usuario->getAttr('id')).'.csv';
+        $this->path = __DIR__.'/../../../uploads/'.md5($this->usuario->getAttr('id')).'.xlsx';
     }
 
     /**
@@ -36,7 +37,7 @@ class ImportFuncionarios extends Page
     public function viewpage():string
     {
         $params = [
-            'modelo_import'       => 'resources/base/modelo_import_funcionarios.csv',
+            'modelo_import'       => 'resources/base/modelo_import_funcionarios.xlsx',
             'form_reloadview'     => Route::route(['action'=>'view']),
             'action'              => Route::route(['action'=>'send']),
         ];
@@ -52,11 +53,15 @@ class ImportFuncionarios extends Page
             $body = [];
             foreach ($params['body'] as $line) {
                 $body[] = [
-                    Html::psmall(Utils::at('0', $line)),
-                    Html::psmall(Utils::at('1', $line)),
-                    Html::psmall(Utils::at('2', $line)),
-                    Html::psmall(EntityFuncionario::vinculoArr()[Utils::at('3', $line)]),
-                    Html::psmall(EntityFuncionario::cargahorariaArr()[Utils::at('4', $line)])
+                    Html::psmall(Utils::at('matricula', $line)),
+                    Html::psmall(Utils::at('funcionario', $line)),
+                    Html::psmall(Utils::at('cpf', $line)),
+                    Html::psmall(Utils::at('telefone', $line)),
+                    Html::psmall(Utils::at('endereco', $line)),
+                    Html::psmall(Utils::at('email', $line)),
+                    Html::psmall(Utils::at('funcao', $line)),
+                    Html::psmall(EntityFuncionario::vinculoArr()[Utils::at('vinculo', $line)]),
+                    Html::psmall(EntityFuncionario::cargahorariaArr()[Utils::at('cargahoraria', $line)])
                 ];
             }
 
@@ -152,15 +157,8 @@ class ImportFuncionarios extends Page
                 $duplicity = 0;
                 $success   = 0;
 
-                foreach($import['body'] as $item)
+                foreach($import['body'] as $feed)
                 {
-                    $feed = [
-                        'funcionario'   => $item[0],
-                        'cpf'           => $item[1],
-                        'funcao'        => $item[2],
-                        'vinculo'       => $item[3],
-                        'cargahoraria'  => $item[4],
-                    ];
 
                     //start DAO and feed with static values
                     $facDAO =  (new FactoryDao())->daoFuncionario();
@@ -169,8 +167,6 @@ class ImportFuncionarios extends Page
                     //feed with dinamic values and write data
                     $facDAO -> getEntity()->feedsEntity($feed);
                     $wrtDAO =  $facDAO->writeData();
-
-                    Logs::writeLog(implode(',', $feed));
 
                     //increment success, duplicitys and fails
                     switch($wrtDAO['code']){
@@ -227,29 +223,59 @@ class ImportFuncionarios extends Page
 
         if(file_exists($this->path)){
 
-            //read file and covert array lines
-            $raw  = file_get_contents($this->path);
-            $file = str_replace(',', ';', $raw);
-            $line = explode(PHP_EOL, $file);
+            //read file and covert array lines with lib ark4ne/xl-reader
+        
+            try{
+                $file   = $this->path;
+                $reader = Factory::createReader($file);
+                $reader-> load();
 
-            $tabKeys = explode(';', $line[0]);
+                $tabKeys = $reader->read()->current();
+                $fields  = [];
+                foreach ($reader->read(2) as $row) {
+                    
+                    $line = [];
+                    foreach ($tabKeys as $key => $field) {
+                        $line[$key] = $row[$key] ?? null;
+                    }
+                    $fields[] = $line;
+                    
+                }
 
-            //covert array cols and feed body table
-            if($line != null){
-                foreach ($line as $key => $value) {
-                    if($key > 0){
-                        $cols = explode(';', $value);
-                        if(!in_array(null, $cols)){
-                            $tabBody[] = [
-                                Utils::at('0', $cols),
-                                Mask::maskCPF(Utils::at('1', $cols)),
-                                Utils::at('2', $cols),
-                                Mask::maskVinculo(Utils::at('3', $cols)),
-                                Mask::maskCarga(Utils::at('4', $cols))
-                            ];
+                //mask values to sheet
+                foreach ($fields as $value) {
+                    if($value['B']!=null && $value['C']!=null && $value['G']!=null && $value['H']!=null && $value['I']!=null)
+                    {
+                        $temp = [];
+                        $cols = [
+                            'A'=>'matricula',
+                            'B'=>'funcionario',
+                            'C'=>'cpf',
+                            'D'=>'telefone',
+                            'E'=>'endereco',
+                            'F'=>'email',
+                            'G'=>'funcao',
+                            'H'=>'vinculo',
+                            'I'=>'cargahoraria',
+                        ];
+
+                        foreach ($value as $k => $v) {
+                            $index    = $cols[$k];
+                            $mskvalue = match($index){
+                                'cpf'          => Mask::maskCPF($v),
+                                'vinculo'      => Mask::maskVinculo($v),
+                                'cargahoraria' => Mask::maskCarga($v),
+                                default        => $v
+                            };
+
+                            $temp[$index] = Security::sanitize($mskvalue);
                         }
+                        $tabBody[] = $temp;
                     }
                 }
+
+            }catch(\Exception $e){
+                Logs::writeLog('ERROR: Arquivo Import Upload Não Aceito!');
             }
         }
 

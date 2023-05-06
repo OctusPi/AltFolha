@@ -3,7 +3,8 @@
     "type": "project",
     "require": {
         "mpdf/mpdf": "8.1.2",
-        "mpdf/qrcode": "1.2.0"
+        "mpdf/qrcode": "1.2.0",
+        "ark4ne/xl-reader": "^1.0"
     },
     "autoload": {
         "psr-4": {

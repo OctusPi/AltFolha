@@ -18,10 +18,13 @@ class Files
     private function getAccept():array
     {
         return [
-            'text/plain' => '.txt',
+            'text/plain' => '.csv',
             'text/csv'   => '.csv',
             'image/png'  => '.png',
             'image/jpeg' => '.jpg',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => '.xlsx',
+            'application/vnd.ms-excel' => '.xlsx'
+
         ];
     }
 
