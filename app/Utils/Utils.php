@@ -2,7 +2,6 @@
 namespace Octus\App\Utils;
 use Octus\App\Model\Entity;
 
-
 class Utils
 {
     /**

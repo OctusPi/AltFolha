@@ -226,7 +226,7 @@ class Security
 
                 ||  ($credentials['profile'] == EntityUsuario::PRF_DEPTO 
                     && $secretaria == $credentials['secretaria'] 
-                    && in_array($departamento, $credentials['deptos']));
+                    && ($departamento == 0 || in_array($departamento, $credentials['deptos'])));
 
         }else{
             return false;

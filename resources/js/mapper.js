@@ -1,6 +1,5 @@
 class Mapper
 {
-
     /** Constructor class call method createObject with array param
      * HTML tag mapper receives array of strings with tag identifier and tries to turn into a js object
      * @param {Array} params 

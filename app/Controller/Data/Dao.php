@@ -419,7 +419,7 @@ abstract class Dao implements ItfDao
             throw new Exception($e->getMessage());
         }finally{
             ConnDB::closeConn();
-            return $exec;
         }
+        return $exec;
     }
 }
