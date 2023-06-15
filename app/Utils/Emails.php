@@ -6,17 +6,14 @@ use Octus\App\Model\EntityUsuario;
 use Octus\App\Utils\Logs;
 use Octus\App\Utils\View;
 use Octus\App\Utils\Utils;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class Emails
 {
     //default params to send email
-    const DISP     = 'dti@campossales.ce.gov.br';
-    const HEADER   = 'MIME-Version: 1.0'.
-    "\r\n".
-    'Content-type: text/html; charset=UTF-8'.
-    "\r\n".
-    'From: <'.self::DISP.'>'.
-    "\r\n";
+    const MAILHOST = 'smtps.uhserver.com';
+    const MAILDISP = 'smtpserver@araripe.ce.gov.br';
+    
 
     //types msgs
     const GENERIC = 0;
@@ -70,14 +67,41 @@ class Emails
     public static function send(int $type, ?EntityUsuario $usuario, ?EntityCompany $company,  ?array $params = null):bool
     {
         //send email
-        $to   = Utils::attr('email', $usuario);
-        $msg  = View::renderView(self::getMsg($type), self::getParams($usuario, $company, $params));
-        $send = mail($to, Utils::attr('sistema', $company), $msg, self::HEADER);
 
-        //writelog
-        $log  = ($send ? 'SUCCESS: ' : 'ERROR: ').' falha ao enviar email para'.$to; 
-        Logs::writeLog($log, $usuario);
+        if($usuario != null)
+        {
+            //send email
+            $to   = Utils::attr('email', $usuario);
+            $msg  = View::renderView(self::getMsg($type), self::getParams($usuario, $company, $params));
 
-        return $send;
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Host = self::MAILHOST;
+            $mail->Port = 587;
+            $mail->SMTPAuth = true; 
+
+            $mail->Username = self::MAILDISP; 
+            $mail->Password = '@ara1Cid10';
+
+            //$mail->SMTPOptions = array('ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ));
+            $mail->setFrom(self::MAILDISP,"Prefeitura Araripe");
+            $mail->AddAddress($to, 'Usuario');
+            $mail->IsHTML(true); 
+            $mail->CharSet = 'UTF-8';
+            $mail->Subject = Utils::attr('sistema', $company);
+            $mail->msgHTML($msg); 
+
+            $send = $mail->send();
+
+            //writelog
+            $log  = ($send ? 'SUCCESS: ' : 'ERROR: ').' falha ao enviar email para'.$usuario->getAttr('email'); 
+            Logs::writeLog($log, $usuario);
+
+            return $send;
+        }else{
+            return false;
+        }
+
     }
 }
